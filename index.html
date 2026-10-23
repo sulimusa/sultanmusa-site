@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sultan Musaev — Sr. DevOps / SRE Engineer</title>
+<meta name="description" content="Sultan Musaev, Senior DevOps / SRE Engineer — 10 years across AWS, Azure, GCP, Kubernetes and infrastructure automation, now building AI engineering systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f12; --panel:#10161b; --panel-2:#141c22; --line:#223039;
+    --fg:#e7edf0; --fg-muted:#8ea3ad; --accent:#5ee6b0; --accent-dim:#2e8f6e;
+    --warn:#f2c14e; --font-body:"IBM Plex Sans",system-ui,sans-serif; --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f6f8f7; --panel:#ffffff; --panel-2:#f0f3f2; --line:#dde4e2; --fg:#101615; --fg-muted:#55665f; --accent:#0f8f61; --accent-dim:#0b6e4a; }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--fg); font-family:var(--font-body);
+    line-height:1.55; font-size:16px; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 24px;}
+  header.site{padding:64px 0 36px; border-bottom:1px solid var(--line);}
+  .eyebrow{font-family:var(--font-mono); font-size:13px; color:var(--accent); letter-spacing:.06em; text-transform:uppercase; margin:0 0 10px;}
+  h1{font-size:clamp(28px,4vw,40px); margin:0 0 6px; font-weight:700; letter-spacing:-.01em;}
+  .role{font-size:17px; color:var(--fg-muted); margin:0 0 18px;}
+  .summary{max-width:620px; color:var(--fg); font-size:15.5px;}
+  .links{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
+  .links a{
+    font-family:var(--font-mono); font-size:13px; border:1px solid var(--line); border-radius:7px;
+    padding:7px 12px; color:var(--fg); background:var(--panel);
+  }
+  .links a:hover{border-color:var(--accent); color:var(--accent); text-decoration:none;}
+  .links a.primary{background:var(--accent); color:#06120d; border-color:var(--accent); font-weight:600;}
+  .links a.primary:hover{opacity:.9; color:#06120d;}
+  section{padding:40px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2{font-family:var(--font-mono); font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--fg-muted); margin:0 0 22px; display:flex; align-items:center; gap:10px;}
+  h2::before{content:""; width:16px; height:1px; background:var(--accent-dim); display:inline-block;}
+
+  .project{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px 24px; margin-bottom:16px;}
+  .project:last-child{margin-bottom:0;}
+  .project h3{margin:0 0 4px; font-size:17px;}
+  .project .tag{font-family:var(--font-mono); font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:.05em;}
+  .project p{color:var(--fg-muted); font-size:14.5px; margin:10px 0 0;}
+  .project p b{color:var(--fg); font-weight:600;}
+  .project .stack-line{font-family:var(--font-mono); font-size:12px; color:var(--fg-muted); margin-top:14px;}
+  .project .stack-line b{color:var(--fg); font-weight:500;}
+
+  .role-row{display:flex; justify-content:space-between; gap:16px; margin-bottom:18px; padding-bottom:18px; border-bottom:1px dashed var(--line);}
+  .role-row:last-child{border-bottom:none; margin-bottom:0; padding-bottom:0;}
+  .role-main h3{margin:0 0 2px; font-size:15.5px;}
+  .role-main .company{color:var(--accent); font-size:13.5px;}
+  .role-main p{color:var(--fg-muted); font-size:13.5px; margin:6px 0 0; max-width:480px;}
+  .role-date{font-family:var(--font-mono); font-size:12px; color:var(--fg-muted); white-space:nowrap; padding-top:3px;}
+
+  .edu-list{list-style:none; margin:0; padding:0; font-size:14.5px; color:var(--fg-muted);}
+  .edu-list li{padding:6px 0;}
+  .edu-list b{color:var(--fg); font-weight:500;}
+
+  footer{padding:40px 0 64px; color:var(--fg-muted); font-size:13px; font-family:var(--font-mono);}
+  footer a{color:var(--fg-muted);}
+  footer a:hover{color:var(--accent);}
+
+  @media (max-width:560px){
+    .role-row{flex-direction:column;}
+    .role-date{order:-1;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="site">
+    <p class="eyebrow">Available now · Hoffman Estates, IL (Chicago area)</p>
+    <h1>Sultan Musaev</h1>
+    <p class="role">Senior DevOps / SRE Engineer — 10 years across AWS, Azure &amp; GCP, now building AI engineering systems</p>
+    <p class="summary">
+      I design and operate cloud infrastructure that stays up: multi-region disaster recovery,
+      Kubernetes platforms, and release automation for regulated financial-services systems.
+      Lately I've been applying that same reliability discipline to AI systems — retrieval
+      pipelines, agent tooling, and the evaluation harnesses that keep them honest.
+    </p>
+    <div class="links">
+      <a class="primary" href="assets/Sultan_Musaev_Resume.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
+      <a href="https://linkedin.com/in/sultan-musaev" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:sulimusa@gmail.com">sulimusa@gmail.com</a>
+      <a href="tel:+18649860215">(864) 986-0215</a>
+    </div>
+  </header>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <span class="tag">Broadridge Financial Solutions — Sr. DevOps / SRE</span>
+      <h3>Disaster recovery &amp; SLO program for a regulated revenue-reporting pipeline</h3>
+      <p><b>Problem:</b> a production data-integrity incident on an AWS ETL pipeline feeding regulated revenue reporting exposed that the platform had no defined reliability targets and no tested recovery path.</p>
+      <p><b>Approach:</b> restored service from a clean snapshot, then closed the root cause with a hardened cross-environment promotion gate rather than a one-off patch. Followed that with SLIs, SLOs, and error budgets for the platform, turning "is it healthy" into something measurable, with alerting thresholds tied to those targets.</p>
+      <p><b>Outcome:</b> eliminated an entire class of deployment-tagging failures and gave the team a durable way to judge reliability, instead of relying on ad hoc incident response.</p>
+      <div class="stack-line"><b>Stack:</b> AWS, Terraform, Kubernetes, DataDog</div>
+    </div>
+
+    <div class="project">
+      <span class="tag">Independent project</span>
+      <h3>Kubernetes Incident Context &amp; Investigation Assistant</h3>
+      <p><b>Problem:</b> when a pod crash-loops or a service degrades, on-call engineers lose time manually correlating Kubernetes resource changes, logs, and runbooks before they can even start fixing anything.</p>
+      <p><b>Approach:</b> built a PydanticAI investigation agent with five read-only tools that pulls Kubernetes resource history and deduplicated logs against Elasticsearch-indexed evidence, forces every claim to cite a concrete source, and separates confirmed observations from hypotheses so it never asserts something it didn't actually see.</p>
+      <p><b>Outcome:</b> validated with 22 automated tests across three failure scenarios and a 30-case benchmark tracking retrieval quality, latency, and cost.</p>
+      <div class="stack-line"><b>Stack:</b> Python, Kubernetes, Elasticsearch, PydanticAI, Grafana</div>
+    </div>
+
+    <div class="project">
+      <span class="tag">Client work</span>
+      <h3>Flower Store: AI ordering assistant</h3>
+      <p><b>Problem:</b> a small retailer needed to take orders conversationally against live, changing inventory without a person picking up every call or chat.</p>
+      <p><b>Approach:</b> built a LangChain/LangGraph conversational ordering flow backed by a RAG pipeline over live product and inventory data, deployed on Cloudflare Workers with Stripe checkout built directly into the flow so an order could close without a handoff.</p>
+      <p><b>Outcome:</b> delivered and running in production for a paying client.</p>
+      <div class="stack-line"><b>Stack:</b> LangChain, LangGraph, Cloudflare Workers, Stripe</div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="role-row">
+      <div class="role-main">
+        <h3>Sr. Site Reliability Engineer, Post-Trade Processing Platform</h3>
+        <div class="company">Broadridge Financial Solutions</div>
+        <p>20+ Terraform stacks across primary and DR regions, cross-region S3 replication with zero-downtime failover, incident response and release automation across 12+ microservices.</p>
+      </div>
+      <div class="role-date">09/2025 – 07/2026</div>
+    </div>
+
+    <div class="role-row">
+      <div class="role-main">
+        <h3>DevOps / Infrastructure Automation Lead</h3>
+        <div class="company">Broadridge Financial Solutions</div>
+        <p>Led IaC initiative automating VM provisioning across 4 global datacenters; converted PowerShell automation into Jenkins CI/CD pipelines.</p>
+      </div>
+      <div class="role-date">04/2025 – 09/2025</div>
+    </div>
+
+    <div class="role-row">
+      <div class="role-main">
+        <h3>Sr. DevOps Engineer, Cloud Data Platform (Revenue Reporting)</h3>
+        <div class="company">Broadridge Financial Solutions</div>
+        <p>Owned disaster recovery for an AWS ETL pipeline; defined SLIs, SLOs, and error budgets for the platform.</p>
+      </div>
+      <div class="role-date">11/2021 – 04/2025</div>
+    </div>
+
+    <div class="role-row">
+      <div class="role-main">
+        <h3>Sr. DevOps Consultant</h3>
+        <div class="company">Inspire11</div>
+        <p>Lambda-to-Airflow migration; Terraform-provisioned Airflow infrastructure.</p>
+      </div>
+      <div class="role-date">01/2021 – 11/2021</div>
+    </div>
+
+    <div class="role-row">
+      <div class="role-main">
+        <h3>Cloud, DevOps &amp; Security Engineer</h3>
+        <div class="company">Slalom Build</div>
+        <p>Multi-cloud delivery across insurance, animal health, automotive, and industrial clients on AWS, Azure, and GCP.</p>
+      </div>
+      <div class="role-date">03/2019 – 12/2020</div>
+    </div>
+
+    <div class="role-row">
+      <div class="role-main">
+        <h3>DevOps Engineer · Unix Systems Administrator / DBA</h3>
+        <div class="company">Morningstar</div>
+        <p>CI/CD pipelines with Jenkins and Docker; AWS IAM, RDS, and Auto Scaling management.</p>
+      </div>
+      <div class="role-date">09/2016 – 02/2019</div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education &amp; certifications</h2>
+    <ul class="edu-list">
+      <li><b>B.S. in Finance</b> — Academy of Management and Production</li>
+      <li><b>Network &amp; Computer System Administration</b> — Harry S Truman College</li>
+      <li><b>AWS Certified Solutions Architect</b> (Associate)</li>
+      <li><b>Red Hat Certified Systems Administrator</b> (RHCSA)</li>
+      <li><b>Certified Kubernetes Administrator</b> (CKA, in progress)</li>
+    </ul>
+  </section>
+
+  <footer>
+    sulimusa@gmail.com · <a href="tel:+18649860215">(864) 986-0215</a> · <a href="https://linkedin.com/in/sultan-musaev" target="_blank" rel="noopener">linkedin.com/in/sultan-musaev</a>
+  </footer>
+</div>
+
+</body>
+</html>
