@@ -60,6 +60,12 @@
   .role-main p{color:var(--fg-muted); font-size:13.5px; margin:6px 0 0; max-width:480px;}
   .role-date{font-family:var(--font-mono); font-size:12px; color:var(--fg-muted); white-space:nowrap; padding-top:3px;}
 
+  .full-experience-btn{
+    margin-top:4px; font-family:var(--font-mono); font-size:12px; border:1px solid var(--line); border-radius:7px;
+    padding:8px 14px; background:var(--panel); color:var(--fg); cursor:pointer;
+  }
+  .full-experience-btn:hover{border-color:var(--accent); color:var(--accent);}
+
   .edu-list{list-style:none; margin:0; padding:0; font-size:14.5px; color:var(--fg-muted);}
   .edu-list li{padding:6px 0;}
   .edu-list b{color:var(--fg); font-weight:500;}
@@ -88,24 +94,15 @@
       pipelines, agent tooling, and the evaluation harnesses that keep them honest.
     </p>
     <div class="links">
-      <a class="primary" href="https://linkedin.com/in/sultan-musaev" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="primary" href="mailto:sulimusa@gmail.com">Email Me</a>
+      <a href="https://github.com/sulimusa/sultanmusa-site/tree/main" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/sultan-musaev" target="_blank" rel="noopener">LinkedIn</a>
       <a href="blog/index.html">Blog</a>
-      <a href="mailto:sulimusa@gmail.com">sulimusa@gmail.com</a>
-      <a href="tel:+18649860215">(864) 986-0215</a>
     </div>
   </header>
 
   <section id="projects">
-    <h2>Projects</h2>
-
-    <div class="project">
-      <span class="tag">Broadridge Financial Solutions — Sr. DevOps / SRE</span>
-      <h3>Disaster recovery &amp; SLO program for a regulated revenue-reporting pipeline</h3>
-      <p><b>Problem:</b> a production data-integrity incident on an AWS ETL pipeline feeding regulated revenue reporting exposed that the platform had no defined reliability targets and no tested recovery path.</p>
-      <p><b>Approach:</b> restored service from a clean snapshot, then closed the root cause with a hardened cross-environment promotion gate rather than a one-off patch. Followed that with SLIs, SLOs, and error budgets for the platform, turning "is it healthy" into something measurable, with alerting thresholds tied to those targets.</p>
-      <p><b>Outcome:</b> eliminated an entire class of deployment-tagging failures and gave the team a durable way to judge reliability, instead of relying on ad hoc incident response.</p>
-      <div class="stack-line"><b>Stack:</b> AWS, Terraform, Kubernetes, DataDog</div>
-    </div>
+    <h2>Personal Projects</h2>
 
     <div class="project">
       <span class="tag">Independent project</span>
@@ -147,7 +144,7 @@
       <div class="role-date">04/2025 – 09/2025</div>
     </div>
 
-    <div class="role-row">
+    <div class="role-row extra-role" hidden>
       <div class="role-main">
         <h3>Sr. DevOps Engineer, Cloud Data Platform (Revenue Reporting)</h3>
         <div class="company">Broadridge Financial Solutions</div>
@@ -156,7 +153,7 @@
       <div class="role-date">11/2021 – 04/2025</div>
     </div>
 
-    <div class="role-row">
+    <div class="role-row extra-role" hidden>
       <div class="role-main">
         <h3>Sr. DevOps Consultant</h3>
         <div class="company">Inspire11</div>
@@ -165,7 +162,7 @@
       <div class="role-date">01/2021 – 11/2021</div>
     </div>
 
-    <div class="role-row">
+    <div class="role-row extra-role" hidden>
       <div class="role-main">
         <h3>Cloud, DevOps &amp; Security Engineer</h3>
         <div class="company">Slalom Build</div>
@@ -174,7 +171,7 @@
       <div class="role-date">03/2019 – 12/2020</div>
     </div>
 
-    <div class="role-row">
+    <div class="role-row extra-role" hidden>
       <div class="role-main">
         <h3>DevOps Engineer · Unix Systems Administrator / DBA</h3>
         <div class="company">Morningstar</div>
@@ -182,6 +179,8 @@
       </div>
       <div class="role-date">09/2016 – 02/2019</div>
     </div>
+
+    <button type="button" id="toggle-experience" class="full-experience-btn" aria-expanded="false">Full experience</button>
   </section>
 
   <section id="education">
@@ -196,9 +195,20 @@
   </section>
 
   <footer>
-    sulimusa@gmail.com · <a href="tel:+18649860215">(864) 986-0215</a> · <a href="https://linkedin.com/in/sultan-musaev" target="_blank" rel="noopener">linkedin.com/in/sultan-musaev</a>
+    sulimusa@gmail.com · <a href="https://github.com/sulimusa/sultanmusa-site/tree/main" target="_blank" rel="noopener">github.com/sulimusa</a> · <a href="https://linkedin.com/in/sultan-musaev" target="_blank" rel="noopener">linkedin.com/in/sultan-musaev</a>
   </footer>
 </div>
+
+<script>
+  var toggleBtn = document.getElementById('toggle-experience');
+  var extraRoles = document.querySelectorAll('.extra-role');
+  toggleBtn.addEventListener('click', function () {
+    var expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    extraRoles.forEach(function (row) { row.hidden = expanded; });
+    toggleBtn.textContent = expanded ? 'Full experience' : 'Show less';
+    toggleBtn.setAttribute('aria-expanded', String(!expanded));
+  });
+</script>
 
 </body>
 </html>
