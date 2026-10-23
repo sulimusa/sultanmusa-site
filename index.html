@@ -67,6 +67,14 @@
   }
   .full-experience-btn:hover{border-color:var(--accent); color:var(--accent);}
 
+  .project h3 a{color:inherit;}
+  .project h3 a:hover{color:var(--accent);}
+  .project-link{display:inline-block; margin-top:14px; font-family:var(--font-mono); font-size:12px; color:var(--accent);}
+  .project-link:hover{text-decoration:underline;}
+
+  .edu-block{padding-top:4px;}
+  .edu-block h3{font-size:14px; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.05em; color:var(--fg-muted); margin:4px 0 14px; font-weight:600;}
+
   .post-item{padding:16px 0; border-bottom:1px dashed var(--line);}
   .post-item:last-child{border-bottom:none; padding-bottom:0;}
   .post-item .post-date{font-family:var(--font-mono); font-size:12px; color:var(--fg-muted); display:block; margin-bottom:4px;}
@@ -111,24 +119,26 @@
   </header>
 
   <section id="projects">
-    <h2>Personal Projects</h2>
+    <h2>Projects</h2>
 
     <div class="project">
-      <span class="tag">Independent project</span>
-      <h3>Kubernetes Incident Context &amp; Investigation Assistant</h3>
+      <span class="tag">Personal project</span>
+      <h3><a href="projects/kubernetes-incident-assistant.html">Kubernetes Incident Context &amp; Investigation Assistant</a></h3>
       <p><b>Problem:</b> when a pod crash-loops or a service degrades, on-call engineers lose time manually correlating Kubernetes resource changes, logs, and runbooks before they can even start fixing anything.</p>
       <p><b>Approach:</b> built a PydanticAI investigation agent with five read-only tools that pulls Kubernetes resource history and deduplicated logs against Elasticsearch-indexed evidence, forces every claim to cite a concrete source, and separates confirmed observations from hypotheses so it never asserts something it didn't actually see.</p>
       <p><b>Outcome:</b> validated with 22 automated tests across three failure scenarios and a 30-case benchmark tracking retrieval quality, latency, and cost.</p>
       <div class="stack-line"><b>Stack:</b> Python, Kubernetes, Elasticsearch, PydanticAI, Grafana</div>
+      <a class="project-link" href="projects/kubernetes-incident-assistant.html">Read the project &rarr;</a>
     </div>
 
     <div class="project">
       <span class="tag">Client work</span>
-      <h3>Flower Store: AI ordering assistant</h3>
+      <h3><a href="projects/flower-store-ai-ordering-assistant.html">Flower Store: AI ordering assistant</a></h3>
       <p><b>Problem:</b> a small retailer needed to take orders conversationally against live, changing inventory without a person picking up every call or chat.</p>
       <p><b>Approach:</b> built a LangChain/LangGraph conversational ordering flow backed by a RAG pipeline over live product and inventory data, deployed on Cloudflare Workers with Stripe checkout built directly into the flow so an order could close without a handoff.</p>
       <p><b>Outcome:</b> delivered and running in production for a paying client.</p>
       <div class="stack-line"><b>Stack:</b> LangChain, LangGraph, Cloudflare Workers, Stripe</div>
+      <a class="project-link" href="projects/flower-store-ai-ordering-assistant.html">Read the project &rarr;</a>
     </div>
   </section>
 
@@ -189,6 +199,17 @@
       <div class="role-date">09/2016 – 02/2019</div>
     </div>
 
+    <div class="extra-role edu-block" hidden>
+      <h3>Education &amp; certifications</h3>
+      <ul class="edu-list">
+        <li><b>B.S. in Finance</b> — Academy of Management and Production</li>
+        <li><b>Network &amp; Computer System Administration</b> — Harry S Truman College</li>
+        <li><b>AWS Certified Solutions Architect</b> (Associate)</li>
+        <li><b>Red Hat Certified Systems Administrator</b> (RHCSA)</li>
+        <li><b>Certified Kubernetes Administrator</b> (CKA, in progress)</li>
+      </ul>
+    </div>
+
     <button type="button" id="toggle-experience" class="full-experience-btn" aria-expanded="false">Full experience</button>
   </section>
 
@@ -202,17 +223,6 @@
     </div>
 
     <a href="blog/index.html" class="full-experience-btn" style="display:inline-block;">All posts</a>
-  </section>
-
-  <section id="education">
-    <h2>Education &amp; certifications</h2>
-    <ul class="edu-list">
-      <li><b>B.S. in Finance</b> — Academy of Management and Production</li>
-      <li><b>Network &amp; Computer System Administration</b> — Harry S Truman College</li>
-      <li><b>AWS Certified Solutions Architect</b> (Associate)</li>
-      <li><b>Red Hat Certified Systems Administrator</b> (RHCSA)</li>
-      <li><b>Certified Kubernetes Administrator</b> (CKA, in progress)</li>
-    </ul>
   </section>
 
   <footer>
