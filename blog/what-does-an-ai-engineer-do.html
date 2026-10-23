@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What does an AI engineer actually do? — Sultan Musaev</title>
+<meta name="description" content="Notes from building a first RAG pipeline after 10 years of SRE/DevOps work, and where reliability instincts did and didn't transfer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0f12; --panel:#10161b; --panel-2:#141c22; --line:#223039;
+    --fg:#e7edf0; --fg-muted:#8ea3ad; --accent:#5ee6b0; --accent-dim:#2e8f6e;
+    --font-body:"IBM Plex Sans",system-ui,sans-serif; --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f6f8f7; --panel:#ffffff; --panel-2:#f0f3f2; --line:#dde4e2; --fg:#101615; --fg-muted:#55665f; --accent:#0f8f61; --accent-dim:#0b6e4a; }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg); color:var(--fg); font-family:var(--font-body); line-height:1.65; font-size:16.5px; -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:680px; margin:0 auto; padding:0 24px;}
+  .back{font-family:var(--font-mono); font-size:12px; color:var(--fg-muted); display:inline-block; margin:40px 0 24px;}
+  .eyebrow{font-family:var(--font-mono); font-size:12px; color:var(--accent); letter-spacing:.06em; text-transform:uppercase; margin:0 0 10px;}
+  h1{font-size:clamp(26px,4.5vw,36px); margin:0 0 14px; font-weight:700; letter-spacing:-.01em; line-height:1.2;}
+  .meta{color:var(--fg-muted); font-size:13.5px; font-family:var(--font-mono); margin-bottom:36px;}
+  article{padding-bottom:40px;}
+  article p{margin:0 0 20px; color:var(--fg);}
+  article h2{font-size:19px; margin:36px 0 14px; font-weight:600;}
+  article ul{margin:0 0 20px; padding-left:22px;}
+  article li{margin-bottom:8px; color:var(--fg);}
+  code{font-family:var(--font-mono); font-size:0.9em; background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:1px 6px;}
+  .callout{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--accent-dim); border-radius:8px; padding:16px 20px; margin:28px 0; color:var(--fg-muted); font-size:15px;}
+  hr{border:none; border-top:1px solid var(--line); margin:40px 0;}
+  footer{padding:20px 0 64px; color:var(--fg-muted); font-size:13px; font-family:var(--font-mono);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">&larr; Writing</a>
+  <p class="eyebrow">AI Engineering Journey</p>
+  <h1>What does an AI engineer actually do? Notes from building my first RAG pipeline</h1>
+  <p class="meta">October 2026 · Sultan Musaev</p>
+
+  <article>
+    <p>
+      After 10 years as a DevOps/SRE engineer, I kept running into the same question from the inside: what does an
+      AI engineer actually <em>do</em>, day to day? Not the conference-talk version, the actual work. I read
+      explanations, searched around with a few LLMs, watched videos, and Alexey Grigorev's writing was the first
+      thing that made the role click and showed me where infrastructure experience actually transfers.
+    </p>
+    <p>
+      Reading about it only goes so far, so I enrolled in AI Shipping Labs' AI Engineering Buildcamp
+      <!-- add the real program link here once confirmed --> — a 9-week, hands-on program built around real
+      projects instead of "Hello World" demos. This post is from week 3, after the first two weeks: building a
+      retrieval-augmented generation (RAG) pipeline from scratch.
+    </p>
+
+    <h2>What actually went into it</h2>
+    <p>A RAG pipeline sounds abstract until you build one. In practice, it broke down into pieces I could reason about individually:</p>
+    <ul>
+      <li>Calling an LLM through the OpenAI API — the easy part, and the part everyone assumes is "the AI work."</li>
+      <li>Pulling real documentation data from GitHub rather than a toy dataset, which immediately surfaces the mess real content has: inconsistent formatting, varying lengths, dead links.</li>
+      <li>Indexing the documents for search with <code>minsearch</code>, a lightweight keyword-search library, before reaching for anything heavier.</li>
+      <li>Splitting documents into smaller chunks so retrieval returns something focused instead of an entire page.</li>
+      <li>Wiring the retrieved chunks into the LLM prompt so the model answers from the actual source material, not just its training data.</li>
+      <li>Assembling all of that into one working, end-to-end document assistant.</li>
+      <li>Exploring structured output — forcing the model to return a defined schema instead of free-form text, which matters the moment anything downstream needs to parse the response reliably.</li>
+    </ul>
+
+    <h2>Where the SRE instincts transferred, and where they didn't</h2>
+    <p>
+      The part that felt familiar was the discipline question: how do I know this is actually retrieving the right
+      thing? That's the same question as "how do I know this service is actually healthy," just pointed at a
+      different kind of system. Years of defining SLIs and SLOs made it natural to ask for evidence instead of
+      trusting that a pipeline which runs without errors is a pipeline that's correct.
+    </p>
+    <p>
+      What didn't transfer as cleanly: a RAG pipeline can run perfectly — no exceptions, no timeouts, every step
+      green — and still retrieve the wrong chunk and hand the model irrelevant context. There's no equivalent to a
+      5xx error for "technically works, but the answer is wrong." That's a different failure mode than almost
+      anything in traditional infrastructure, and it's the part I'm still building real intuition for.
+    </p>
+
+    <div class="callout">
+      Open question I'm still chewing on: has anyone here built RAG over real internal documentation (not a clean
+      demo corpus)? What ended up being harder than expected — the chunking strategy, the retrieval quality, or
+      something else entirely? I'd genuinely like to compare notes.
+    </div>
+
+    <p>
+      More of this as the buildcamp continues — next up is evaluation, which is where I expect the SRE habits to
+      matter most.
+    </p>
+  </article>
+
+  <footer>
+    <a href="index.html">&larr; All posts</a> · <a href="../index.html">sultanmusa.dev</a> · <a href="mailto:sulimusa@gmail.com">sulimusa@gmail.com</a>
+  </footer>
+</div>
+</body>
+</html>
